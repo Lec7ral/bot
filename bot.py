@@ -43,7 +43,7 @@ def download(message):
     miBot.send_message(message.chat.id, "Descargando...")
     asyncio.run(_pdf(message))
 
-""" @miBot.message_handler(commands=['cleandir'], private_chat=True)
+@miBot.message_handler(commands=['cleandir'])
 def cmd_cleandir(message):
     dirx = './Manga/'
     if os.path.isdir(dirx):
@@ -52,7 +52,6 @@ def cmd_cleandir(message):
     else:
         miBot.reply_to(message, "Your download dir are empty, use this command only if your miBot are stuck")
 
-"""
 
 async def _pdf(message):
     miBot.reply_to(message, "Ya brinco")
