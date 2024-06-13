@@ -76,6 +76,7 @@ async def _pdf(message):
     stdout, stderr, returncode, pid = result
     #messager = f"Salida estándar: {stdout}"
     print("El error es:", stderr, flush=True)
+    miBot.send_message(message.chat.id, returncode, pid)
     count = 0
     d = manga_dir
     for file in glob.glob(f'{manga_dir}*/'):
