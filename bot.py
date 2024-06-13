@@ -15,11 +15,16 @@ miBot.remove_webhook()
 miBot.set_webhook(url=url)
 
 app = Flask(__name__)
-@app.route('/', methods = ['POST', 'GET'])
+@app.route('/', methods=['GET', 'POST'])
 def webhook():
-    update = telebot.types.Update.de_json(request.stream.read().decode('utf-8'))
-    miBot.process_new_updates([update])
-    return 'ok', 200
+    if request.method == 'POST':
+        update = telebot.types.Update.de_json(request.stream.read().decode('utf-8'))
+        miBot.process_new_updates([update])
+        return 'ok', 200
+    else:
+        return 'Hello, World!'  # o cualquier otra respuesta para GET
+
+if __name__ == '__main__':
     app.run(debug=True)
 @miBot.message_handler(commands=["start"])
 def cmd_start(message):
