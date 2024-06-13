@@ -8,14 +8,14 @@ from help import check_url
 
 BOT_API = os.environ['BOT_API']
 secret = os.environ['SECRET']
-url = 'https://mi-bot-oh1a.onrender.com'
+url = 'https://mi-bot-oh1a.onrender.com' + secret
 
 miBot = telebot.TeleBot(BOT_API, threaded = False)
 miBot.remove_webhook()
 miBot.set_webhook(url=url)
 
 app = Flask(__name__)
-@app.route('/', methods = ['POST', 'GET'])
+@app.route('/' + secret, methods = ['POST', 'GET'])
 def webhook():
     update = telebot.types.Update.de_json(request.stream.read().decode('utf-8'))
     miBot.process_new_updates([update])
