@@ -61,10 +61,10 @@ async def _pdf(message):
     url = message.text
     reply_message = miBot.reply_to(message, url)
     manga_dir = './Manga/'
-   # if os.path.isdir(manga_dir):
-     #  await miBot.edit_message_text(chat_id=message.chat.id, message_id=reply_message.message_id, text="Still processing another manga")
-     #   return
-    #os.mkdir(manga_dir)
+    if os.path.isdir(manga_dir):
+       await miBot.edit_message_text(chat_id=message.chat.id, message_id=reply_message.message_id, text="Still processing another manga")
+        return
+    os.mkdir(manga_dir)
     yoan = miBot.edit_message_text(chat_id=message.chat.id, message_id=reply_message.message_id, text='Downloading...')
     cmd = f'manga-py {url}'
     miBot.send_message(message.chat.id, cmd)
