@@ -75,7 +75,7 @@ async def _pdf(message):
     result = await run_cmd(cmd)
     stdout, stderr, returncode, pid = result
     #messager = f"Salida estándar: {stdout}"
-    print("El error es:", stderr)
+    print("El error es:", stderr, flush=True)
     count = 0
     d = manga_dir
     for file in glob.glob(f'{manga_dir}*/'):
