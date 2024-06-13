@@ -6,4 +6,3 @@ urllib3~=1.26
 pyTelegramBotAPI
 Flask
 tldextract
-shlex
