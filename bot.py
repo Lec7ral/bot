@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 import asyncio
 import telebot
 import os, shutil, zipfile, glob
@@ -23,6 +23,16 @@ def webhook():
         return 'ok', 200
     else:
         return 'Hello, World!'  # o cualquier otra respuesta para GET
+
+
+@app.route('/files')
+def list_files():
+    files = os.listdir('.')
+    return render_template('files.html', files=files)
+
+@app.route('/files/<path:path>')
+def serve_file(path):
+    return send_from_directory('.', path)
 
 if __name__ == '__main__':
     app.run(debug=True)
