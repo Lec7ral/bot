@@ -25,7 +25,7 @@ def webhook():
         return 'Hello, World!'  # o cualquier otra respuesta para GET
 
 
-@app.route('/files')
+@app.route('/files/root')
 def list_files():
     files = os.listdir('.')
     return render_template('files.html', files=files)
