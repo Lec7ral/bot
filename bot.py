@@ -67,7 +67,7 @@ async def _pdf(message):
     manga_dir = './Manga/'
     if os.path.isdir(manga_dir):
        miBot.edit_message_text(chat_id=message.chat.id, message_id=reply_message.message_id, text="Still processing another manga")
-       return
+      # return
     os.mkdir(manga_dir)
     yoan = miBot.edit_message_text(chat_id=message.chat.id, message_id=reply_message.message_id, text='Downloading...')
     cmd = f'manga-py {url}'
