@@ -48,13 +48,6 @@ def navigate_folder(path):
             files_with_links.append((file, url_for('serve_file', path=file_path)))
     return render_template('files.html', files=files_with_links, current_path=path)
 
-@app.route('/download/<path:path>')
-def serve_file(path):
-    if os.path.isfile(path):
-        return send_from_directory('.', path)
-    else:
-        return 'No es un archivo', 404
-
 if __name__ == '__main__':
     app.run(debug=True)
 @miBot.message_handler(commands=["start"])
