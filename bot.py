@@ -38,12 +38,6 @@ def navigate_folder(path):
     else:
         return 'No es una carpeta', 404
 
-@app.route('/files/<path:path>')
-def serve_file(path):
-    if os.path.isfile(path):
-        return send_from_directory('.', path)
-    else:
-        return 'No es un archivo', 404
 
 if __name__ == '__main__':
     app.run(debug=True)
