@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Files</title>
+  <title>Archivos</title>
 </head>
 <body>
-    <h1>Files in {{ current_path }}</h1>
-    <ul>
-        {% for file, link in files %}
-            <li><a href="{{ link }}">{{ file }}</a></li>
-        {% endfor %}
-    </ul>
-    <p><a href="{{ url_for('list_files') }}">Back to root</a></p>
+  <h1>{{ path }}</h1>
+  <ul>
+  {% for file, link in files %}
+    {% if file.endswith('/') %}
+      <li><a href="{{ link }}">{{ file }}</a></li>
+    {% else %}
+      <li><a href="{{ url_for('download_file', path=link) }}">{{ file }}</a></li>
+    {% endif %}
+  {% endfor %}
+  </ul>
 </body>
 </html>
