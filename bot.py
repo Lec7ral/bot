@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, url_for
+from flask import Flask, request, render_template, url_for, send_file
 import asyncio
 import telebot
 import os, shutil, zipfile, glob
@@ -23,8 +23,25 @@ def webhook():
         return 'ok', 200
     else:
         return 'Hello, World!'  # o cualquier otra respuesta para GET
+        
+@app.route('/files/<path:path>')
+def navigate_folder(path):
+    root = '/path/to/root/directory'
+    files = os.listdir(os.path.join(root, path))
+    files_with_links = []
+    for file in files:
+        file_path = os.path.join(root, path, file)
+        if os.path.isdir(file_path):
+            files_with_links.append((file, url_for('navigate_folder', path=os.path.join(path, file))))
+        else:
+            files_with_links.append((file, url_for('download_file', path=os.path.join(path, file))))
+    return render_template('files.html', files=files_with_links, path=path)
 
-
+@app.route('/download/<path:path>')
+def download_file(path):
+    root = '/path/to/root/directory'
+    file_path = os.path.join(root, path)
+    return send_file(file_path, as_attachment=True)
 @app.route('/files')
 def list_files():
     files = os.listdir('.')
@@ -37,17 +54,7 @@ def list_files():
             files_with_links.append((file, url_for('serve_file', path=file)))
     return render_template('files.html', files=files_with_links, current_path='.')
 
-@app.route('/files/<path:path>')
-def navigate_folder(path):
-    files = os.listdir(path)
-    files_with_links = []
-    for file in files:
-        file_path = os.path.join(path, file)
-        if os.path.isdir(file_path):
-            files_with_links.append((file, url_for('navigate_folder', path=file_path)))
-        else:
-            files_with_links.append((file, url_for('serve_file', path=file_path)))
-    return render_template('files.html', files=files_with_links, current_path=path)
+
 
 @app.route('/download/<path:path>')
 def serve_file(path):
