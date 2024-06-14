@@ -38,8 +38,7 @@ def navigate_folder(path):
 
 @app.route('/download/<path:path>')
 def download_file(path):
-    file_path = os.path.join('.', path)
-    return send_file(file_path, as_attachment=True)
+    return send_file(path, as_attachment=True)
 @app.route('/files')
 def list_files():
     files = os.listdir('.')
