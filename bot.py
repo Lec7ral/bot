@@ -25,19 +25,19 @@ def webhook():
         return 'Hello, World!'  # o cualquier otra respuesta para GET
 
 
-@app.route('/files/root')
+@app.route('/files')
 def list_files():
     files = os.listdir('.')
     return render_template('files.html', files=files)
 
-@app.route('/files/<path:path>')
+"""@app.route('/files/<path:path>')
 def navigate_folder(path):
     if os.path.isdir(path):
         files = os.listdir(path)
         return render_template('files.html', files=files, current_path=path)
     else:
         return 'No es una carpeta', 404
-
+"""
 
 if __name__ == '__main__':
     app.run(debug=True)
