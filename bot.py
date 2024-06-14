@@ -26,11 +26,10 @@ def webhook():
         
 @app.route('/files/<path:path>')
 def navigate_folder(path):
-    root = '/path/to/root/directory'
-    files = os.listdir(os.path.join(root, path))
+    files = os.listdir(path)
     files_with_links = []
     for file in files:
-        file_path = os.path.join(root, path, file)
+        file_path = os.path.join(path, file)
         if os.path.isdir(file_path):
             files_with_links.append((file, url_for('navigate_folder', path=os.path.join(path, file))))
         else:
@@ -39,8 +38,7 @@ def navigate_folder(path):
 
 @app.route('/download/<path:path>')
 def download_file(path):
-    root = '/path/to/root/directory'
-    file_path = os.path.join(root, path)
+    file_path = os.path.join('.', path)
     return send_file(file_path, as_attachment=True)
 @app.route('/files')
 def list_files():
