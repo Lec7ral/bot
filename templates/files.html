@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Archivos en la carpeta raíz</title>
+    <title>Archivos en {{ current_path }}</title>
   </head>
   <body>
-    <h1>Archivos en la carpeta raíz</h1>
+    <h1>Archivos en {{ current_path }}</h1>
     <ul>
       {% for file in files %}
-        <li>{{ file }}</li>
+        {% if file.isdir %}
+          <li><a href="{{ url_for('navigate_folder', path=file.path) }}">{{ file.name }}</a></li>
+        {% else %}
+          <li>{{ file.name }}</li>
+        {% endif %}
       {% endfor %}
     </ul>
+    <p><a href="{{ url_for('navigate_folder', path='..') }}">Subir un nivel</a></p>
   </body>
 </html>
