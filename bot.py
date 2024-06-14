@@ -31,8 +31,19 @@ def list_files():
     return render_template('files.html', files=files)
 
 @app.route('/files/<path:path>')
+def navigate_folder(path):
+    if os.path.isdir(path):
+        files = os.listdir(path)
+        return render_template('files.html', files=files, current_path=path)
+    else:
+        return 'No es una carpeta', 404
+
+@app.route('/files/<path:path>')
 def serve_file(path):
-    return send_from_directory('.', path)
+    if os.path.isfile(path):
+        return send_from_directory('.', path)
+    else:
+        return 'No es un archivo', 404
 
 if __name__ == '__main__':
     app.run(debug=True)
