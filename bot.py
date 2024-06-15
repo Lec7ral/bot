@@ -30,10 +30,8 @@ def list_files():
     files_with_links = []
     for file in files:
         file_path = os.path.join('.', file)
-        if os.path.isdir(file_path):
+        os.path.isdir(file_path):
             files_with_links.append((file, url_for('navigate_folder', path=file)))
-        else:
-            files_with_links.append((file, url_for('serve_file', path=file)))
     return render_template('files.html', files=files_with_links, current_path='.')
 
 @app.route('/files/<path:path>')
@@ -121,36 +119,23 @@ async def _pdf(message):
                 os.remove(f'./Manga/{file_dir}/{f.stem}.zip')
                 cmd = f'dir2pdf --subdirs vol_(.*) Manga/{file_dir}/' + 'vol_{}.pdf' + f' Manga/{file_dir}/'
                 await run_cmd(cmd)
-                shutil.rmtree(f'./Manga/{file_dir}/{f.stem}')
 
-        """
-        if AS_ZIP:
-            shutil.make_archive(file_dir, 'zip', file)
-            start_time = time.time()
-            await yoan.edit_text('Uploading...')
-            await miBot.send_document(
-                update.chat.id,
-                file_dir + '.zip',
-                caption=file_dir
-                            )
-            os.remove(file_dir + '.zip')
-        else: """
         dldirs = [i async for i in absolute_paths(f'Manga/{file_dir}/')]
         dldirs.sort()
         for fls in dldirs:
-            await miBot.send_chat_action(message.chat.id, 'upload_document')
-            await miBot.send_document(
-            message.chat.id,
-            fls,
-            caption=fls[-7:-4]
-            )
-
-            os.remove(fls)
+            if os.path.exists(fls):
+                try:
+                    await miBot.send_chat_action(message.chat.id, 'upload_document')
+                    await miBot.send_document(
+                        message.chat.id,
+                        fls,
+                        caption=fls[-7:-4]
+                    )
+                    os.remove(fls)
+                except Exception as e:
+                    print(f"Error al enviar archivo: {e}")
         shutil.rmtree(manga_dir)
         await yoan.delete()
-
-
-
 
 
 
