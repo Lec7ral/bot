@@ -35,7 +35,11 @@ def list_files():
         else:
             files_with_links.append((file, url_for('serve_file', path=file_path)))
     return render_template('files.html', files=files_with_links, current_path='.')
-
+    
+@app.route('/files/<path:path>')
+def serve_file(path):
+    return send_file(path, as_attachment=True)
+    
 @app.route('/files/<path:path>')
 def navigate_folder(path):
     files = os.listdir(path)
