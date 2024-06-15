@@ -104,7 +104,7 @@ async def _pdf(message):
     stdout, stderr, returncode, pid = result
     #messager = f"Salida estándar: {stdout}"
     print("El error es:", stderr, flush=True)
-    miBot.send_message(message.chat.id, returncode, pid)
+    miBot.send_message(message.chat.id, returncode)
     count = 0
     d = manga_dir
     for file in glob.glob(f'{manga_dir}*/'):
@@ -112,7 +112,7 @@ async def _pdf(message):
             if os.path.isfile(os.path.join(file, path)):
                 count += 1
         if int(count) == 0:
-            miBot.edit_message_text(chat_id=message.chat.id, message_id=yoan.message_id, text="Process Stopped. can't download manga url")
+            await yoan.edit_text("Process Stopped. can't download manga url")
             shutil.rmtree(d)
             return
     for file in glob.glob(f'{manga_dir}*/'):
@@ -122,10 +122,10 @@ async def _pdf(message):
             with zipfile.ZipFile(f, 'r') as archive:
                 archive.extractall(path=f'./Manga/{file_dir}/{f.stem}')
                 os.remove(f'./Manga/{file_dir}/{f.stem}/info.txt')
-                os.remove(f'./Manga/{file_dir}/{f.stem}.zip')
                 cmd = f'dir2pdf --subdirs vol_(.*) Manga/{file_dir}/' + 'vol_{}.pdf' + f' Manga/{file_dir}/'
                 await run_cmd(cmd)
-
+                shutil.rmtree(f'./Manga/{file_dir}/{f.stem}')
+        os.remove(f'./Manga/{file_dir}/{f.stem}.zip')
         dldirs = [i async for i in absolute_paths(f'Manga/{file_dir}/')]
         dldirs.sort()
         for fls in dldirs:
@@ -133,13 +133,15 @@ async def _pdf(message):
                 try:
                     with open(fls, 'rb') as file:
                         fls_input_file = telebot.types.InputFile(file)
-                    await miBot.send_chat_action(message.chat.id, 'upload_document')
-                    await miBot.send_document(
-                        message.chat.id,
-                        fls_input_file,
-                        caption=fls[-7:-4]
-                    )
-                    os.remove(fls)
+                        await asyncio.gather(
+                            miBot.send_chat_action(message.chat.id, 'upload_document'),
+                            miBot.send_document(
+                                message.chat.id,
+                                fls_input_file,
+                                caption=fls[-7:-4]
+                            )
+                        )
+                    #os.remove(fls)
                 except Exception as e:
                     print(f"Error al enviar archivo: {e}")
                     miBot.send_message(message.chat.id, f"Error al enviar archivo: {e}")
@@ -147,7 +149,8 @@ async def _pdf(message):
                     print(f"Tamaño del archivo: {os.path.getsize(fls)}")
                     print(f"Tipo de archivo: {fls.split('.')[-1]}")
         shutil.rmtree(manga_dir)
-        await yoan.delete()
+        #await yoan.delete()
+
 
 
 
