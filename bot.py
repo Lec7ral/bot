@@ -60,6 +60,15 @@ def cmd_start(message):
 @miBot.message_handler(commands=["enserio?"])
 def cmd_enserio(message):
     miBot.reply_to(message, "Pos mira que si")
+    
+@miBot.message_handler(commands=["clean"])
+def cmd_clean(message):
+    dirx = './Manga/'
+    if os.path.isdir(dirx):
+        shutil.rmtree(dirx)
+        miBot.reply_to(message,"Successfully cleaned your download dir, now you can sent another link")
+    else:
+        miBot.reply_to(message, "Your download dir are empty, use this command only if your miBot are stuck")
 
 
 @miBot.message_handler(content_types=['text'])
@@ -75,16 +84,6 @@ def download(message):
         return
     miBot.send_message(message.chat.id, "Descargando...")
     asyncio.run(_pdf(message))
-
-@miBot.message_handler(commands=["clean"])
-def cmd_clean(message):
-    dirx = './Manga/'
-    if os.path.isdir(dirx):
-        shutil.rmtree(dirx)
-        miBot.reply_to(message,"Successfully cleaned your download dir, now you can sent another link")
-    else:
-        miBot.reply_to(message, "Your download dir are empty, use this command only if your miBot are stuck")
-
 
 async def _pdf(message):
     miBot.reply_to(message, "Ya brinco")
