@@ -4,14 +4,10 @@
   <title>Archivos</title>
 </head>
 <body>
-  <h1>{{ path }}</h1>
+  <h1>{{ current_path }}</h1>
   <ul>
   {% for file, link in files %}
-    {% if file.endswith('/') %}
-      <li><a href="{{ link }}">{{ file }}</a></li>
-    {% else %}
-      <li><a href="{{ url_for('download_file', path=link) }}">{{ file }}</a></li>
-    {% endif %}
+    <li><a href="{{ link }}">{{ file }}</a></li>
   {% endfor %}
   </ul>
 </body>
