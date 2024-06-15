@@ -143,6 +143,9 @@ async def _pdf(message):
                 except Exception as e:
                     print(f"Error al enviar archivo: {e}")
                     miBot.send_message(message.chat.id, f"Error al enviar archivo: {e}")
+                    print(f"Ruta del archivo: {fls}")
+                    print(f"Tamaño del archivo: {os.path.getsize(fls)}")
+                    print(f"Tipo de archivo: {fls.split('.')[-1]}")
         shutil.rmtree(manga_dir)
         await yoan.delete()
 
