@@ -76,8 +76,8 @@ def download(message):
     miBot.send_message(message.chat.id, "Descargando...")
     asyncio.run(_pdf(message))
 
-@miBot.message_handler(commands=["cleandir"])
-def cmd_cleandir(message):
+@miBot.message_handler(commands=["clean"])
+def cmd_clean(message):
     dirx = './Manga/'
     if os.path.isdir(dirx):
         shutil.rmtree(dirx)
