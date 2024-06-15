@@ -126,17 +126,23 @@ async def _pdf(message):
                 cmd = f'dir2pdf --subdirs vol_(.*) Manga/{file_dir}/' + 'vol_{}.pdf' + f' Manga/{file_dir}/'
                 await run_cmd(cmd)
 
-        dldirs = [i async for i in absolute_paths(f'Manga/{file_dir}/')]
-        dldirs.sort()
-        for fls in dldirs:
-            if os.path.exists(fls):
-                try:
-                    await miBot.send_chat_action(message.chat.id, 'upload_document')
-                    await miBot.send_document(
-                        message.chat.id,
-                        fls,
-                        caption=fls[-7:-4]
-                    )
+     dldirs = [i async for i in absolute_paths(f'Manga/{file_dir}/')]
+dldirs.sort()
+for fls in dldirs:
+    if os.path.exists(fls):
+        try:
+            with open(fls, 'rb') as file:
+                fls_input_file = InputFile(file)
+            await miBot.send_chat_action(message.chat.id, 'upload_document')
+            await miBot.send_document(
+                message.chat.id,
+                fls_input_file,
+                caption=fls[-7:-4]
+            )
+            os.remove(fls)
+        except Exception as e:
+            print(f"Error al enviar archivo: {e}")
+            miBot.send_message(message.chat.id, f"Error al enviar archivo: {e}")
                     os.remove(fls)
                 except Exception as e:
                     print(f"Error al enviar archivo: {e}")
