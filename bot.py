@@ -30,8 +30,10 @@ def list_files():
     files_with_links = []
     for file in files:
         file_path = os.path.join('.', file)
-        os.path.isdir(file_path):
-            files_with_links.append((file, url_for('navigate_folder', path=file)))
+        if os.path.isdir(file_path):
+            files_with_links.append((file + '/', url_for('navigate_folder', path=file_path)))
+        else:
+            files_with_links.append((file, url_for('serve_file', path=file_path)))
     return render_template('files.html', files=files_with_links, current_path='.')
 
 @app.route('/files/<path:path>')
@@ -41,11 +43,11 @@ def navigate_folder(path):
     for file in files:
         file_path = os.path.join(path, file)
         if os.path.isdir(file_path):
-            files_with_links.append((file, url_for('navigate_folder', path=file_path)))
+            files_with_links.append((file + '/', url_for('navigate_folder', path=file_path)))
         else:
             files_with_links.append((file, url_for('serve_file', path=file_path)))
     return render_template('files.html', files=files_with_links, current_path=path)
-
+    
 if __name__ == '__main__':
     app.run(debug=True)
 @miBot.message_handler(commands=["start"])
