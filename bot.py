@@ -131,15 +131,18 @@ async def _pdf(message):
         for fls in dldirs:
             if os.path.exists(fls):
                 try:
+                    with open(fls, 'rb') as file:
+                        fls_input_file = telebot.types.InputFile(file)
                     await miBot.send_chat_action(message.chat.id, 'upload_document')
                     await miBot.send_document(
                         message.chat.id,
-                        fls,
+                        fls_input_file,
                         caption=fls[-7:-4]
                     )
                     os.remove(fls)
                 except Exception as e:
                     print(f"Error al enviar archivo: {e}")
+                    miBot.send_message(message.chat.id, f"Error al enviar archivo: {e}")
         shutil.rmtree(manga_dir)
         await yoan.delete()
 
