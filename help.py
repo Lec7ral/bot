@@ -6,7 +6,6 @@ http://1stkissmanga.com
 http://1stkissmanhua.com
 http://365manga.com
 http://3asq.org
-http://8muses.com
 http://ac.qq.com
 http://acomics.ru
 http://addfunny.com
@@ -31,23 +30,17 @@ http://catmanga.org
 http://catonhead.com
 http://chochox.com
 http://cmreader.info
-http://com-x.life
-http://comic-walker.com
-http://comic.k-manga.jp
 http://comic.naver.com
 http://comic.webnewtype.com
 http://comicextra.com
 http://comickiba.com
-http://comico.jp
 http://comicpunch.net
 http://comicvn.net
 http://cycomi.com
 http://danbooru.donmai.us
 http://desu.me
 http://digitalteam1.altervista.org
-http://digitalteamreader.netsons.org
 http://disasterscans.com
-http://dm5.com
 http://doujins.com
 http://e-hentai.org
 http://edelgardescans.com
@@ -62,10 +55,7 @@ http://gmanga.me
 http://godsrealmscan.com
 http://grazescans.com
 http://hatigarmscanz.net
-http://heavenmanga.biz
 http://helveticascans.com
-http://hentai-chan.me
-http://hentai-chan.me
 http://hentai-img.com
 http://hentai2read.com
 http://hentaifox.com
@@ -82,7 +72,6 @@ http://hiperdex.com
 http://hitomi.la
 http://hocvientruyentranh.com
 http://hscans.com
-http://http://reader.jokerfansub.com
 http://hunlight-scans.info
 http://immortalupdates.com
 http://imperfectcomic.com
@@ -99,7 +88,6 @@ http://kisslove.net
 http://kissmanga.com
 http://kissmanga.in
 http://kkjscans.co
-http://kobato.hologfx.com/reader
 http://komikcast.com
 http://komikid.com
 http://komikstation.com
@@ -107,7 +95,6 @@ http://kumanga.com
 http://lector.patyscans.com
 http://leitor.net
 http://leviatanscans.com
-http://lezhin.com
 http://lhtranslation.net
 http://lilymanga.com
 http://littlexgarden.com
@@ -138,7 +125,6 @@ http://mangabin.com
 http://mangabob.com
 http://mangabox.me
 http://mangacanblog.com
-http://mangachan.me
 http://mangachill.com
 http://mangaclash.com
 http://mangaclub.ru
@@ -150,7 +136,6 @@ http://mangadoor.com
 http://mangaeden.com
 http://mangaeffect.com
 http://mangafreak.net
-http://mangago.me
 http://mangagreat.com
 http://mangahentai.me
 http://mangahere.cc
@@ -158,7 +143,6 @@ http://mangahere.onl
 http://mangahome.com
 http://mangahub.io
 http://mangahub.ru
-http://mangaid.co
 http://mangaindo.web.id
 http://mangainn.net
 http://mangakakalot.com
@@ -205,7 +189,6 @@ http://mangaus.xyz
 http://mangavy.com
 http://mangaweebs.in
 http://mangawindow.net
-http://mangaz.com
 http://mangazuki.co
 http://mangazuki.me
 http://mangazuki.online
@@ -282,7 +265,6 @@ http://read.ptscans.com
 http://read.yagami.me
 http://readcomiconline.to
 http://readcomicsonline.ru
-http://reader.championscans.comco
 http://reader.deathtollscans.net
 http://reader.decadencescans.com
 http://reader.evilflowers.com
@@ -300,7 +282,6 @@ http://readmng.com
 http://reaperscans.com
 http://remanga.org
 http://rocaca.com
-http://s-manga.net
 http://s2manga.com
 http://santosfansub.com
 http://selfmanga.ru
@@ -319,9 +300,7 @@ http://sleepytranslations.com
 http://slide.world-three.org
 http://socialweebs.in
 http://submanga.online
-http://sunday-webry.com
 http://taadd.com
-http://tapas.io
 http://taptaptaptaptap.net
 http://tenmanga.com
 http://the-nonames.com
@@ -336,7 +315,7 @@ http://truecolorsscans.miocio.org
 http://truyen.vnsharing.site
 http://truyenchon.com
 http://truyentranhtuan.com
-http://tsumino.com
+http://tsumino.com 
 http://twilightscans.com
 http://vanguardbun.com
 http://viz.com
