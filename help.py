@@ -2,6 +2,7 @@ import os, tldextract, asyncio, shlex
 from typing import Tuple
 
 supported = '''http://18comic.org
+https://visortecno.com
 http://1stkissmanga.com
 http://1stkissmanhua.com
 http://365manga.com
